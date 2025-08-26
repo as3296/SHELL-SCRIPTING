@@ -1,0 +1,113 @@
+du - lists all the files and their sizes
+du -h - all the files in humanreadablw with size K, M, G etc 
+du -ah - all files including hidden files in humanreadablw with size K, M, G etc
+du -k - all files in KB
+du -m - all files in MB
+du -sh - summary of the total size of the directory
+du -sh * - summary of the total size of each file in the directory
+du -sh .* - summary of the total size of each hidden file in the directory
+du -sh .* * - summary of the total size of each file including hidden files in the directory
+du -sh .??* * - summary of the total size of each file including hidden files in the directory except . and ..
+du -sk * - summary of the total size of each file in the directory in KB
+du -sk .* - summary of the total size of each hidden file in the directory in KB
+du -sk .* * - summary of the total size of each file including hidden files in the directory in KB
+du -sk .??* * - summary of the total size of each file including hidden files in the directory except . and .. in KB
+du -sm * - summary of the total size of each file in the directory in MB    
+sort - to sort the files 
+sort -h humanreadable in humanreadable format
+sort -n in numerical order 
+sort -r in reverse order
+sort -hr humanreadable in reverse order 
+[root@ip-172-31-38-159 ~]# du sort -h
+du: cannot access 'sort': No such file or directory
+[root@ip-172-31-38-159 ~]# du -h
+4.0K    ./.ssh
+52K     .
+[root@ip-172-31-38-159 ~]# du -ah
+4.0K    ./.ssh/authorized_keys
+4.0K    ./.ssh
+4.0K    ./.bash_logout
+4.0K    ./.bash_profile
+4.0K    ./.bashrc
+4.0K    ./.cshrc
+4.0K    ./.tcshrc
+4.0K    ./demo.sh
+4.0K    ./gitinstall.sh
+4.0K    ./diskutliznalert.sh
+12K     ./.viminfo
+4.0K    ./.bash_history
+52K     .
+[root@ip-172-31-38-159 ~]# du -ah|sort -h 
+4.0K    ./.bash_history
+4.0K    ./.bash_logout
+4.0K    ./.bash_profile
+4.0K    ./.bashrc
+4.0K    ./.cshrc
+4.0K    ./.ssh
+4.0K    ./.ssh/authorized_keys
+4.0K    ./.tcshrc
+4.0K    ./demo.sh
+4.0K    ./diskutliznalert.sh
+4.0K    ./gitinstall.sh
+12K     ./.viminfo
+52K     .
+[root@ip-172-31-38-159 ~]# du -ah|sort -rh
+52K     .
+12K     ./.viminfo
+4.0K    ./gitinstall.sh
+4.0K    ./diskutliznalert.sh
+4.0K    ./demo.sh
+4.0K    ./.tcshrc
+4.0K    ./.ssh/authorized_keys
+4.0K    ./.ssh
+4.0K    ./.cshrc
+4.0K    ./.bashrc
+4.0K    ./.bash_profile
+4.0K    ./.bash_logout
+4.0K    ./.bash_history
+
+Command line arguments - daily used commands- give these parameters in the script to make it dynamic
+$1 - directory name
+$2 - number of files to display 
+$3 - size metric K, M, G etc
+$? - exit status of the last command
+$# - number of command line arguments
+$0 - script name
+$$ - process id of the current script
+
+#!/bin/bash
+echo "creating a file"
+FILE=/opt/fs.txt
+sudo touch /opt/fs.txt
+echo "created file"
+echo "positional arguments to retrieve and save files to specic path"
+path="$1"
+echo $path
+du -ah $path | sort -hr | head -n 5 > /opt/fs.txt
+echo "This is list"
+cat /opt/fs.txt
+
+OUTPUT
+
+[root@ip-172-31-38-159 ~]# ./fs.sh
+creating a file
+created file
+positional arguments to retrieve and save files to specic path
+
+This is list
+68K     .
+12K     ./.viminfo
+4.0K    ./gitinstall.sh
+4.0K    ./fs.sh
+4.0K    ./diskutliznalert.sh
+[root@ip-172-31-38-159 ~]# cd /opt/
+[root@ip-172-31-38-159 opt]# ll
+total 4
+drwxr-xr-x. 4 root root 33 Aug 13 21:08 aws
+-rw-r--r--. 1 root root 81 Aug 26 11:16 fs.txt
+[root@ip-172-31-38-159 opt]# cat fs.txt
+68K     .
+12K     ./.viminfo
+4.0K    ./gitinstall.sh
+4.0K    ./fs.sh
+4.0K    ./diskutliznalert.sh

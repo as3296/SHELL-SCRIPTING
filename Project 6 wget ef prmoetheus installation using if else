@@ -1,0 +1,51 @@
+to fetch whether any software is in the system use below command:
+eg to check wget
+rpm -qa|grep wget
+to remove wget use yum remove wget; to install use yum install wget
+Using if else and install prometheus using wget
+use the below script
+bash script name wget.sh
+#!/bin/bash
+echo "installing prmotheus"
+if [ -e /root/prometheus-3.6.0-rc.0.linux-amd64.tar.gz ] #-e means exists
+then
+        echo "prometheus already exists"
+        tar -zxvf prometheus-3.6.0-rc.0.linux-amd64.tar.gz
+else
+        echo "installing binary promtheus zip file"
+wget https://github.com/prometheus/prometheus/releases/download/v3.6.0-rc.0/prometheus-3.6.0-rc.0.linux-amd64.tar.gz
+          tar -zxvf prometheus-3.6.0-rc.0.linux-amd64.tar.gz
+echo  "downloading new prometheus"
+fi
+
+
+OUTPUT AFTER RUNNING THE SCRIPT:
+[root@ip-172-31-38-159 ~]# vi wget.sh
+[root@ip-172-31-38-159 ~]# chmod +x wget.sh
+[root@ip-172-31-38-159 ~]# ./wget.sh
+installing prmotheus
+installing binary promtheus zip file
+--2025-08-26 11:49:48--  https://github.com/prometheus/prometheus/releases/download/v3.6.0-rc.0/prometheus-3.6.0-rc.0.linux-amd64.tar.gz
+Resolving github.com (github.com)... 140.82.114.4
+Connecting to github.com (github.com)|140.82.114.4|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://release-assets.githubusercontent.com/github-production-release-asset/6838921/a497b33b-f444-47c8-82dd-50bba56a8723?sp=r&sv=2018-11-09&sr=b&spr=https&se=2025-08-26T12%3A40%3A02Z&rscd=attachment%3B+filename%3Dprometheus-3.6.0-rc.0.linux-amd64.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2025-08-26T11%3A39%3A09Z&ske=2025-08-26T12%3A40%3A02Z&sks=b&skv=2018-11-09&sig=TUwgFHZePZAe6%2FflFP3ZrlJ6%2BnKcdKM2W0oTi6%2BmK64%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc1NjIwOTI4OCwibmJmIjoxNzU2MjA4OTg4LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.EXB_dJxiE8O_KEy_ZXFsjNvW3HTi1mvChr53-57hZSE&response-content-disposition=attachment%3B%20filename%3Dprometheus-3.6.0-rc.0.linux-amd64.tar.gz&response-content-type=application%2Foctet-stream [following]
+--2025-08-26 11:49:48--  https://release-assets.githubusercontent.com/github-production-release-asset/6838921/a497b33b-f444-47c8-82dd-50bba56a8723?sp=r&sv=2018-11-09&sr=b&spr=https&se=2025-08-26T12%3A40%3A02Z&rscd=attachment%3B+filename%3Dprometheus-3.6.0-rc.0.linux-amd64.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2025-08-26T11%3A39%3A09Z&ske=2025-08-26T12%3A40%3A02Z&sks=b&skv=2018-11-09&sig=TUwgFHZePZAe6%2FflFP3ZrlJ6%2BnKcdKM2W0oTi6%2BmK64%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc1NjIwOTI4OCwibmJmIjoxNzU2MjA4OTg4LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.EXB_dJxiE8O_KEy_ZXFsjNvW3HTi1mvChr53-57hZSE&response-content-disposition=attachment%3B%20filename%3Dprometheus-3.6.0-rc.0.linux-amd64.tar.gz&response-content-type=application%2Foctet-stream
+Resolving release-assets.githubusercontent.com (release-assets.githubusercontent.com)... 185.199.109.133, 185.199.110.133, 185.199.111.133, ...
+Connecting to release-assets.githubusercontent.com (release-assets.githubusercontent.com)|185.199.109.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 121200726 (116M) [application/octet-stream]
+Saving to: ‘prometheus-3.6.0-rc.0.linux-amd64.tar.gz’
+
+prometheus-3.6.0-rc.0.linux-am 100%[==================================================>] 115.59M   369MB/s    in 0.3s
+
+2025-08-26 11:49:49 (369 MB/s) - ‘prometheus-3.6.0-rc.0.linux-amd64.tar.gz’ saved [121200726/121200726]
+
+prometheus-3.6.0-rc.0.linux-amd64/
+prometheus-3.6.0-rc.0.linux-amd64/prometheus.yml
+prometheus-3.6.0-rc.0.linux-amd64/promtool
+prometheus-3.6.0-rc.0.linux-amd64/prometheus
+prometheus-3.6.0-rc.0.linux-amd64/LICENSE
+prometheus-3.6.0-rc.0.linux-amd64/NOTICE
+downloading new prometheus
+[root@ip-172-31-38-159 ~]#

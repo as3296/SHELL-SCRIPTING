@@ -1,0 +1,74 @@
+pre-requisite - https://www.youtube.com/watch?v=eX7Rykwpqos&list=PLnsGW1CrMg9zHqRR6B7crtNJ1teYIz5F7&index=2
+variable in shell script: a character that stores some value
+with $ symbol you can call the variable
+Eg.., var="devops"
+echo $var --> prints devops
+for actual value always use $var () - () prints the value of var
+eg. var=(date)
+echo $var --> prints date
+echo $var() --> prints actual date
+if there are multile arguments to be printed use $1, $2, $3; ans $0 refers #
+to name od the script
+if else statements are used to mke decision based on values of variables
+basic syntax:
+if [condition]; then
+commands
+else
+commands
+fi --closing statement
+
+Multiple conditions can be checked using elif
+syntax: 
+if [condition]; then
+commands
+elif [condition]; then
+commands
+else
+commands
+fi --closing statement
+Eg:
+#!/bin/bash
+echo "script to install git"
+echo "installing git"
+if [ $(uname) -eq "Linux" ]; then    - space after [ and before ] is mandatory
+echo "this is linux box installing git using yum"
+yum install git -y
+elif [ $(uname) -eq "Darwin" ]; then
+then "this is mac box installing git using brew"
+brew install git
+elif [ $(uname) -eq "Windows" ]; then
+echo "this is windows box installing git using choco"
+choco install git -y
+else
+echo "this is not installing git"
+fi
+
+
+install software in multiple flavours of OS
+#!/bin/bash - shebang line
+echo "script to install git"  - prints the message
+echo "installing git"
+if [ $(uname) == "Linux" ]; then    - space after [ and before ] is mandatory
+echo "this is linux box installing git using yum"
+yum install git -y
+elif [ $(uname) == "Darwin" ]; then
+then "this is mac box installing git using brew" 
+brew install git
+elif [ $(uname) == "Windows" ]; then
+echo "this is windows box installing git using choco"
+choco install git -y
+else
+echo "this is not installing git"
+fi
+echo "git installed successfully"
+to the script name
+Eg.., script.sh arg1 arg2 arg3
+echo "script name is $0"
+echo "first argument is $1
+echo "second argument is $2"
+echo "third argument is $3"
+echo "total number of arguments are $#" - prints total number of arguments
+echo "all arguments are $@" - prints all arguments
+echo "all arguments are $*" - prints all arguments
+echo "last argument is ${!#}" - prints last argument
+Note: Ensure there is a space after [ and before ] in the if conditions.

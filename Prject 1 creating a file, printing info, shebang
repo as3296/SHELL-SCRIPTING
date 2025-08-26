@@ -1,0 +1,22 @@
+create a file, printing info, shebang# - https://www.youtube.com/watch?v=sv6U1rDI3rw&list=PLnsGW1CrMg9zHqRR6B7crtNJ1teYIz5F7&index=1
+vi demo.sh
+in demo.sh file add:
+#!/bin/bash - shebang line
+echo "Hello World"
+date
+uptime
+close and save the file
+give execute permission to the file:
+chmod +x demo.sh
+run the script:
+./demo.sh
+Output:
+Hello World
+Mon Jun 10 12:34:56 UTC 2024
+ 12:34:56 up 10 days,  3:45,  2 users,  load average: 0.00, 0.01, 0.05
+Explanation:
+#!/bin/bash - This line indicates that the script should be run using the Bash shell.
+echo "Hello World" - This command prints "Hello World" to the terminal.
+date - This command prints the current date and time.
+uptime - This command shows how long the system has been running, along with the current time, number of users, and load average.
+Note: Ensure there is a space after [ and before ] in the if conditions.    
